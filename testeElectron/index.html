@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <style>
+        #canvas {
+            top: 0px !important;
+            left: 0px !important;
+            position: absolute;
+        }
+
+        #img {
+            top: 0px;
+            left: 0px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="result">
+
+    </div>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const result = document.getElementById('result');
+        const imageString = '/Volumes/HD/Cursos/Tests/TelaDeCelular/assets/meizu15.jpeg'
+        const broke = require('../index');
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
+
+        const drawRetangle = obj => {
+            ctx.beginPath();
+            ctx.lineWidth = "1";
+            ctx.strokeStyle = "green";
+            ctx.rect(obj.x, obj.y, obj.width, obj.height);
+            ctx.stroke();
+        }
+
+        img.addEventListener('load', function () {
+            // broke.setThreshOfMescleRetct(100);
+            const retangles = broke.getSquare(imageString);
+            canvas.width = retangles.delimited.width * 2
+            canvas.height = retangles.delimited.height
+            img.width = retangles.delimited.width
+            img.height = retangles.delimited.height
+            // Changed
+            ctx.drawImage(img, retangles.delimited.x, retangles.delimited.y, retangles.delimited.width, retangles.delimited.height, 0, 0, retangles.delimited.width, retangles.delimited.height);
+            // Original
+            ctx.drawImage(img, retangles.delimited.x, retangles.delimited.y, retangles.delimited.width, retangles.delimited.height, retangles.delimited.width, 0, retangles.delimited.width, retangles.delimited.height);
+            
+            retangles.rectangles.forEach(drawRetangle);
+            result.setAttribute('style', `margin-top: ${retangles.delimited.height+50}px`)
+            result.innerHTML = `${Math.floor(broke.getPercentOfRetangles(imageString, retangles.rectangles))}% broke`
+            console.log(retangles)
+        }, false);
+        img.src = imageString;
+    </script>
+</body>
+</html>

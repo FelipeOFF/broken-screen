@@ -1,0 +1,16 @@
+{
+  "name": "broken-screen",
+  "version": "0.0.1",
+  "description": "Esta library tem como objetivo ler uma imagem, de um celular e verificar se a tela do mesmo esta quebrada",
+  "main": "index.js",
+  "gypfile": true,
+  "scripts": {
+    "rebuild": "node-gyp rebuild",
+    "electron": "node-gyp rebuild --target=1.7.5 --arch=x64 --dist-url=https://atom.io/download/atom-shell"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nan": "^2.8.0"
+  }
+}
