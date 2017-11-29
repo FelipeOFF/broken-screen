@@ -100,3 +100,7 @@ int number = brock.getPercentOfRetangles('imagePath', [{width: 1, x: 20, y:10, h
 
 console.log(number)
 ```
+
+## Result
+
+![Banana](./img/imagem.png)
